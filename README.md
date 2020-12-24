@@ -1,2 +1,2 @@
 # web
-a tiny symfony based website
+a tiny symfony based website framework
