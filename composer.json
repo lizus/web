@@ -1,9 +1,8 @@
 {
-    "name": "lizus/test",
-    "description": "test",
+    "name": "lizus/web",
+    "description": "web framwork",
     "type": "project",
     "require": {
-        "php": ">=7.1",
         "symfony/http-foundation": "5.x-dev",
         "symfony/http-kernel": "5.x-dev",
         "symfony/routing": "5.x-dev"

@@ -9,6 +9,11 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
+/**
+ * 整站通用的常量定义
+ */
+require_once dirname(__DIR__).'/config/defined.php';
+
 $request=Request::createFromGlobals();
 
 $routes=include dirname(__DIR__).'/config/routes.php';
@@ -23,15 +28,13 @@ $argumentResolver=new ArgumentResolver();
 
 try {
     $request->attributes->add($matcher->match($request->getPathInfo()));
-    $controller=$controllerResolver->getController($request);
 } catch (ResourceNotFoundException $e) {
     $request->attributes->add($matcher->match('/404'));
     $request->attributes->add(['error'=>$e]);
-    $controller=$controllerResolver->getController($request);
 } catch (\Throwable $th) {
     $request->attributes->add($matcher->match('/500'));
     $request->attributes->add(['error'=>$th]);
-    $controller=$controllerResolver->getController($request);
 }
+$controller=$controllerResolver->getController($request);
 $arguments=$argumentResolver->getArguments($request,$controller);
 call_user_func_array($controller,$arguments);

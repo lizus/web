@@ -5,9 +5,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ErrorController {
     public function error404(Request $request){
-        var_dump('404');
+        var_dump($request->attributes->get('error'));
     }
     public function error500(Request $request){
-        var_dump('500');
+        var_dump($request->attributes->get('error'));
     }
 }
